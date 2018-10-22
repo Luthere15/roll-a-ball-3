@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        WinText.text = "";
         SetCountText();
     }
 
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+        Debug.Log("Move Vertical is: " + moveVertical);
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement*speed);
     }
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
     { 
         if (other.gameObject.CompareTag("Pickup"))
         {
-            gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
             count = count + 1;
             SetCountText();
         }
